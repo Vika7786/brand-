@@ -14,7 +14,8 @@ Route::get('/dashboard', [Controllers\ProductController::class, 'getIndex'])->na
 });
 Route::middleware('auth')->group(function () {
     Route::patch('/profile', [Controllers\ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::delete('/profile', [Controllers\ProfileController::class, 'destroy'])->name('profile.destroy');  
+    Route::post('/og', [Controllers\OpenGraphController::class,'postIndex'])->name('og');
 });
 
 

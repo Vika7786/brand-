@@ -186,45 +186,35 @@
 <div class="w-full">
         <h2 class="text-center text-blue-400 font-bold text-2xl uppercase mb-10">Fill out our form</h2>
         <div class="bg-white p-10 rounded-lg shadow md:w-3/4 mx-auto lg:w-1/2">
-            <form action="">
-                <div class="mb-5">
-                    <label for="url" class="block mb-2 font-bold text-gray-600">Url</label>
-                    <input type="text" id="url" url="url" placeholder="Ссылка" class="border border-gray-300 shadow p-3 w-full rounded mb-">
-                </div>
-
-                <div class="mb-5">
-                    <label for="og type" class="block mb-2 font-bold text-gray-600">Og type</label>
-                    <input type="text" id="og type" name="og type" placeholder="Тип страницы" class="border border-red-300 shadow p-3 w-full rounded mb-">
-                </div>
-
-
-                <div class="mb-5">
-                    <label for="og image" class="block mb-2 font-bold text-gray-600">Og image</label>
-                    <input type="text" id="og image" name="og image" placeholder="Путь к изображению" class="border border-red-300 shadow p-3 w-full rounded mb-">
-                </div>
-
-
-                <div class="mb-5">
-                    <label for="og title" class="block mb-2 font-bold text-gray-600">Og title</label>
-                    <input type="text" id="og title" name="og title" placeholder="Заголовок страницы" class="border border-red-300 shadow p-3 w-full rounded mb-">
-                </div>
-
-
+            <form method="post" action="{{asset('og')}}">
+                @csrf
                <div class="mb-5">
-                    <label for="og url" class="block mb-2 font-bold text-gray-600">Og url</label>
-                    <input type="text" id="og url" name="og url" placeholder="og url" class="border border-red-300 shadow p-3 w-full rounded mb-">
+                    <label for="og_url" class="block mb-2 font-bold text-gray-600">Og url</label>
+                    <input type="text" id="og_url" name="og_url" placeholder="og url" value="{{$_SERVER['REQUEST_URI']}}" class="border border-red-300 shadow p-3 w-full rounded mb-">
                 </div>
-
-
-
                 <div class="mb-5">
-                    <label for="og description" class="block mb-2 font-bold text-gray-600">Og description</label>
-                    <input type="text" id="og description" name="og description" placeholder="Описание страницы" class="border border-red-300 shadow p-3 w-full rounded mb-">
+                    <label for="og_type" class="block mb-2 font-bold text-gray-600">Og type</label>
+                    <select id="og_type" name="og_type" placeholder="Тип страницы" class="border border-red-300 shadow p-3 w-full rounded mb-">
+                        <option value="{{$og_type}}" selected>{{$og_type}}</option>
+                        <option value="website">Website</option>
+                        <option value="article">Article</option>
+                        <option value="product">Product</option>
+                    </select>
                 </div>
+                <div class="mb-5">
+                    <label for="og_image" class="block mb-2 font-bold text-gray-600">Og image</label>
+                    <input type="text" id="og_image" name="og_image" placeholder="Путь к изображению" class="border border-red-300 shadow p-3 w-full rounded mb-" value="{{$og_image}}">
+                </div>
+                <div class="mb-5">
+                    <label for="og_title" class="block mb-2 font-bold text-gray-600">Og title</label>
+                    <input type="text" id="og_title" name="og_title" placeholder="Заголовок страницы" class="border border-red-300 shadow p-3 w-full rounded mb-" value="{{$og_title}}">
 
-
-
-                <button class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg">Сохранить</button>
+                </div>
+                <div class="mb-5">
+                    <label for="og_description" class="block mb-2 font-bold text-gray-600">Og description</label>
+                    <textarea  id="og_description" name="og_description"  class="border border-red-300 shadow p-3 w-full rounded mb-">{{$og_description}}</textarea> 
+                </div>
+                <button class="block w-full bg-blue-500 text-white font-bold p-4 rounded-lg" type="submit">Сохранить</button>
             </form>
         </div>
     </div>
